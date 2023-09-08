@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  ApiUrl:"https://server.haroonsaifi.site"
+  ApiUrl:"https://petserver.haroonsaifi.site"
 };

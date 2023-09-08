@@ -7,13 +7,13 @@ To get started, follow these steps:
 1. Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/haroonsaifi17/LostPetGuardian.git
+git clone https://github.com/haroonsaifi17/LostPetGuardian.git && cd LostPetGuardian
 ```
 
 2. Install project dependencies using npm
 
 ```bash
-npm run install
+npm install && npm run install
 ```
 
 ## Usage

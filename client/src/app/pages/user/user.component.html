@@ -1,1 +1,48 @@
-<p>user works!</p>
+<nav
+  class="flex h-16 justify-between items-center p-4 mx-auto max-w-screen-xl bg-darkNavy"
+>
+  <div>
+    <a class="mr-4 sm:hidden" (click)="addClassToElement(b)">
+      <i class="fa-solid fa-bars fa-xl"></i>
+    </a>
+    <a class="text-white" (click)="goHome()">
+      <i class="fa-solid fa-shield-cat"></i>
+      LostPetGuardian</a
+    >
+  </div>
+  <div
+    class="w-10 h-10 rounded-full bg-slate-400 flex justify-center items-center"
+  >
+    <i class="fa-solid fa-user"></i>
+  </div>
+</nav>
+<div class="flex max-w-screen-xl mx-auto overflow-x-hidden">
+  <div class="bg-navy left-nav duration-100">
+    <ul class="m-4 max-sm:m-2">
+      <li class="my-4">
+        <a class="p-2" routerLink="dashboard" routerLinkActive="active"
+          ><span><i class="fa-solid fa-house"></i></span
+          ><span
+            [ngClass]="{ navToggle: isClassAdded }"
+            class="pl-2 max-sm:hidden"
+            >Dashboard</span
+          ></a
+        >
+      </li>
+      <li class="my-4">
+        <a class="p-2" routerLink="notes" routerLinkActive="active"
+          ><span><i class="fa-solid fa-file mx-[3px]"></i></span
+          ><span
+            [ngClass]="{ navToggle: isClassAdded }"
+            class="pl-2 max-sm:hidden"
+            >Report</span
+          ></a
+        >
+      </li>
+    </ul>
+  </div>
+  <div #b class="main-content bg-slate-50 flex-1 overflow-y-auto">
+    <div>user page works</div>
+<button type="button" (click)="userLogout()" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Logout</button>
+  </div>
+</div>

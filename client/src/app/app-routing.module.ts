@@ -4,6 +4,8 @@ import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component'
 import { SignupComponent } from './pages/signup/signup.component'
 import { UserComponent } from './pages/user/user.component'
+import { LoginCallbackComponent } from './pages/login-callback/login-callback.component'
+import { AuthGuard } from './services/auth.guard'
 
 const routes: Routes = [
   {
@@ -21,6 +23,11 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'callback',
+    component: LoginCallbackComponent,
   },
   { path: '**', redirectTo: '' },
 ]
