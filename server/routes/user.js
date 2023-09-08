@@ -87,12 +87,12 @@ router.get(
   async (req, res) => {
     try {
       const page = parseInt(req.query.page) - 1 || 0
-      const limit = parseInt(req.query.limit) || 10
+      const limit = parseInt(req.query.limit) || 5
       const search = req.query.search || ''
       let sort = parseInt(req.query.sort) || -1
       let genre = req.query.cat || 'All'
       let pageno = [1]
-      const genreOptions = ['cat', 'dog', 'rabbit', 'horses']
+      const genreOptions = ['cat', 'dog', 'rabbit', 'horse']
 
       let query = LostPetReport.find({
         $or: [
