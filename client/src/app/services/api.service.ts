@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment'
   providedIn: 'root',
 })
 export class ApiService {
+  location:string=''
   constructor(private router: Router, private http: HttpClient) {}
   logout(): void {
     localStorage.removeItem('token')

@@ -26,4 +26,4 @@ npm run dev
 
 The client app will be accessible at [http://localhost:4200](http://localhost:4200).
 
-The server will be accessible at [http://localhost:4040](http://localhost:4040).
+The server will be accessible at [http://localhost:4020](http://localhost:4020).

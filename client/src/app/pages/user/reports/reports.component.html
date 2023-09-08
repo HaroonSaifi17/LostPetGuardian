@@ -2,27 +2,64 @@
   <h2 class="font-bold text-xl mb-5 text-center">LOST REPORTS</h2>
   <div class="flex justify-center">
     <div class="bg-gray-200 p-1 rounded-full">
-      <input #f (search)="search = f.value; page = 1; getData()" type="search"
-        class="p-2 max-w-[250px] w-[50vw] rounded-full bg-gray-300" placeholder="Search" />
-      <a (click)="search = f.value; page = 1; getData()"
-        class="py-2 px-3 w-[40px] inline-block rounded-full bg-gray-300 ml-4">
+      <input
+        #f
+        (search)="search = f.value; page = 1; getData()"
+        type="search"
+        class="p-2 max-w-[250px] w-[50vw] rounded-full bg-gray-300"
+        placeholder="Search"
+      />
+      <a
+        (click)="search = f.value; page = 1; getData()"
+        class="py-2 px-3 w-[40px] inline-block rounded-full bg-gray-300 ml-4"
+      >
         <i class="fa-solid fa-magnifying-glass"></i>
       </a>
     </div>
   </div>
   <div class="flex flex-wrap mt-3 mb-4">
-    <a [class.dark]="cat == 'All'" (click)="cat = 'All'; page = 1; getData()"
-      class="p-2 bg-gray-200 m-2 my-1 rounded-full">All</a>
-    <a *ngFor='let category of (reportData$ | async)?.genreOptions' [class.dark]="cat == category" (click)="cat = category; page = 1; getData()"
-      class="p-2 bg-gray-200 m-2 my-1 rounded-full">{{category}}</a>
+    <a
+      [class.dark]="cat == 'All'"
+      (click)="cat = 'All'; page = 1; getData()"
+      class="p-2 bg-gray-200 m-2 my-1 rounded-full"
+      >All</a
+    >
+    <a
+      *ngFor="let category of (reportData$ | async)?.genreOptions"
+      [class.dark]="cat == category"
+      (click)="cat = category; page = 1; getData()"
+      class="p-2 bg-gray-200 m-2 my-1 rounded-full"
+      >{{ category }}</a
+    >
   </div>
   <div *ngIf="reportData$ | async as reportData">
-    <div class="p-2 m-1 bg-slate-200" *ngFor="let report of reportData.reports" >
-      <span>{{ report.petName }}</span>
+    <div
+      class="p-2 m-1 bg-slate-200 max-w-[500px] mx-auto"
+      *ngFor="let report of reportData.reports"
+    >
+      <div (click)="navigate(report.location)" class="flex items-center">
+        <img
+          [src]="apiUrl + report.image"
+          class="w-[120px] h-[120px] object-cover"
+        />
+        <div class="pl-2">
+          <p><span class="text-gray-700 font-semibold">Pet Name: </span>{{ report.petName }}</p>
+          <p><span class="text-gray-700 font-semibold">Category: </span>{{ report.category }}</p>
+          <p><span class="text-gray-700 font-semibold">Color: </span>{{ report.color }}</p>
+          <p><span class="text-gray-700 font-semibold">Report Date: </span>{{ report.dateLost }}</p>
+          <p><span class="text-gray-700 font-semibold">Contact: </span>{{ report.contactPhone }}</p>
+        </div>
+      </div>
+      <p><span class="text-gray-700 font-semibold">Description: </span>{{ report.description }}</p>
     </div>
     <div class="flex justify-center mt-4 flex-wrap">
-      <a *ngFor="let page1 of reportData.pageno" [class.dark]="page1 == page" (click)="page = page1; getData()"
-        class="rounded-full mx-2 bg-gray-200"><span class="m-2 aspect-square">{{ page1 }}</span></a>
+      <a
+        *ngFor="let page1 of reportData.pageno"
+        [class.dark]="page1 == page"
+        (click)="page = page1; getData()"
+        class="rounded-full mx-2 bg-gray-200"
+        ><span class="m-2 aspect-square">{{ page1 }}</span></a
+      >
     </div>
   </div>
 </div>

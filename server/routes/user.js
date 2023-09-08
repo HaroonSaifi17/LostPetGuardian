@@ -2,11 +2,12 @@ const passport = require('passport')
 const router = require('express').Router()
 const User = require('./../models/user')
 const LostPetReport = require('../models/pet')
+const path = require('path');
 
 const multer = require('multer')
 const fs = require('fs')
 
-const storage1 = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, './images')
   },
@@ -21,8 +22,8 @@ const storage1 = multer.diskStorage({
   },
 })
 
-const upload1 = multer({
-  storage: storage1,
+const upload = multer({
+  storage: storage,
   limits: {
     fileSize: 10 * 1024 * 1024,
   },
@@ -43,7 +44,7 @@ router.get(
 router.post(
   '/add',
   passport.authenticate('jwt', { session: false }),
-  upload1.single('image'),
+  upload.single('image'),
   async (req, res) => {
     try {
       let user = await User.findById(req.user.userId)
@@ -69,7 +70,6 @@ router.post(
 )
 router.get(
   '/image/:url',
-  passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
       const fileUrl = req.params.url
@@ -96,7 +96,7 @@ router.get(
 
       let query = LostPetReport.find({
         $or: [
-          { name: { $regex: search, $options: 'i' } },
+          { petName: { $regex: search, $options: 'i' } },
           { category: { $regex: search, $options: 'i' } },
           { description: { $regex: search, $options: 'i' } },
         ],
