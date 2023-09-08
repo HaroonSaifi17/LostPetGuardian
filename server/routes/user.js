@@ -81,6 +81,62 @@ router.get(
   }
 )
 
+router.get('/nearby', async (req, res) => {
+
+  try {
+    const userLat = parseFloat(req.query.lat); // Get user's latitude from the query parameter
+    const userLong = parseFloat(req.query.lng); // Get user's longitude from the query parameter
+    const maxDist = 7; 
+
+    const results = await LostPetReport.find({}, 'location').exec()
+    
+    const nearbyData = results
+      .map((result) => {
+        try {
+          const { lat, lng } = JSON.parse(result.location);
+          const distance = calculateDistance(userLat, userLong, lat, lng);
+
+           if (distance < maxDist) {
+            console.log(`Latitude: ${lat}, Longitude: ${lng}, Distance: ${distance} km`);
+            return {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+              Distance: parseFloat(distance),
+            };
+           }
+
+        } catch (error) {
+          console.error(`Error parsing location data: ${error}`);
+          return false;
+        }
+      });
+      res.status(200).json(nearbyData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    const earthRadius = 6371; // Radius of the Earth in kilometers
+
+    // Convert degrees to radians
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) *
+        Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const distance = earthRadius * c; // Distance in kilometers
+    return distance;
+  }
+});
+
 router.get(
   '/reports',
   passport.authenticate('jwt', { session: false }),
