@@ -1,8 +1,8 @@
 <nav id="home" class="max-w-screen-xl flex p-4 justify-between mx-auto items-center bg-gray-200">
   <div class="flex items-center">
-    <div class="block sm:hidden my-auto z-10">
+    <div class="block sm:hidden my-auto z-[1001]">
       <button (click)="toggleClass(list)" type="button"
-        class="text-gray-900 bg-white focus:outline-none hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 font-medium rounded-lg text-sm px-1.5 py-1.5 z-10">
+        class="text-gray-900 bg-white focus:outline-none hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 font-medium rounded-lg text-sm px-1.5 py-1.5 z-[1001]">
         <i class="fa-solid fa-bars fa-2xl"></i>
       </button>
     </div>
@@ -11,17 +11,18 @@
     </div>
   </div>
   <div #list
-    class="max-sm:fixed max-sm:w-3/2 max-sm:top-0 max-sm:-left-full duration-100 max-sm:bg-gray-100 max-sm:h-[100vh] z-9">
+    class="max-sm:fixed max-sm:w-3/2 max-sm:top-0 max-sm:-left-full duration-100 max-sm:bg-gray-100 max-sm:h-[100vh] z-[1000]">
     <ul
       class="flex max-sm:flex-col max-sm:w-full max-sm:justify-start max-sm:items-stretch max-sm:h-full max-sm:py-20 max-sm:px-4 max-sm:space-y-5">
-      <li><a class="m-1 p-2">Dashboard</a></li>
-      <li><a class="m-1 p-2">Lost Reports</a></li>
-      <li><a class="m-1 p-2">Contact Us</a></li>
+      <li><a (click)="toggleClass(list)" routerLink="dashboard" routerLinkActive="active" class="m-1 p-2">Dashboard</a></li>
+      <li><a (click)="toggleClass(list)" routerLink="reports" routerLinkActive="active" class="m-1 p-2">Lost Reports</a></li>
+      <li><a (click)="toggleClass(list)"routerLink="add" routerLinkActive="active" class="m-1 p-2">Add Report</a></li>
+      <li><a (click)="toggleClass(list)" routerLink="contact" routerLinkActive="active" class="m-1 p-2">Contact Us</a></li>
     </ul>
   </div>
   <div (click)='profile=!profile' class="flex justify-center items-center rounded-full bg-slate-400 w-[30px] h-[30px] relative">
     <i class="fa-solid fa-user fa-lg"></i>
-    <div *ngIf="profile" class="absolute top-full right-full p-2 pt-0 rounded-2xl bg-slate-300">
+    <div *ngIf="profile" class="absolute top-full right-full p-2 pt-0 rounded-2xl bg-slate-300 z-[1000]">
       <p class="p-2 ">{{(name$ | async)?.name}}</p>
       <a (click)="logout()" class="p-2 mb-2 font-bold">logout</a>
     </div>

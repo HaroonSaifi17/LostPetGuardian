@@ -25,4 +25,27 @@ export class ApiService {
   getName():Observable<{name:string}>{
     return this.http.get<{name:string}>(environment.ApiUrl + '/user/name')
   }
+  getCurrentLocation() {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            if (position) {
+              let lat = position.coords.latitude;
+              let lng = position.coords.longitude;
+
+              const location = {
+                lat,
+                lng,
+              };
+              resolve(location);
+            }
+          },
+          (error) => console.log(error)
+        );
+      } else {
+        reject('Geolocation is not supported by this browser.');
+      }
+    });
+  }
 }

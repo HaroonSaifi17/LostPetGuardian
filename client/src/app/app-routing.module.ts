@@ -7,6 +7,9 @@ import { UserComponent } from './pages/user/user.component'
 import { LoginCallbackComponent } from './pages/login-callback/login-callback.component'
 import { AuthGuard } from './services/auth.guard'
 import { DasboardComponent } from './pages/user/dasboard/dasboard.component'
+import { ContactComponent } from './pages/user/contact/contact.component'
+import { ReportsComponent } from './pages/user/reports/reports.component'
+import { AddComponent } from './pages/user/add/add.component'
 
 const routes: Routes = [
   {
@@ -29,6 +32,18 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DasboardComponent,
+      },
+      {
+        path: 'reports',
+        component: ReportsComponent,
+      },
+      {
+        path: 'add',
+        component: AddComponent,
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
       },
       {
         path: '',

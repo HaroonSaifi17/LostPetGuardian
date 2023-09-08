@@ -14,6 +14,9 @@ import { NavbarComponent } from './pages/user/navbar/navbar.component';
 import { CorsInterceptor } from './services/cors.interceptor';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { DasboardComponent } from './pages/user/dasboard/dasboard.component';
+import { ContactComponent } from './pages/user/contact/contact.component';
+import { AddComponent } from './pages/user/add/add.component';
+import { ReportsComponent } from './pages/user/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { DasboardComponent } from './pages/user/dasboard/dasboard.component';
     UserComponent,
     LoginCallbackComponent,
     NavbarComponent,
-    DasboardComponent
+    DasboardComponent,
+    ContactComponent,
+    AddComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
