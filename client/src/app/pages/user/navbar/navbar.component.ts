@@ -10,11 +10,13 @@ import { ApiService } from 'src/app/services/api.service'
 })
 export class NavbarComponent implements OnInit {
   profile:boolean=false
-  name$?:Observable<{name:string}>
+  userName:string=''
   constructor(private router: Router,private api:ApiService) { }
 
   ngOnInit(): void {
-  this.name$=this.api.getName()
+  this.api.getName().subscribe(d=>{
+    this.userName=d.name
+  })
   }
 
   toggleClass(list: HTMLDivElement): void {

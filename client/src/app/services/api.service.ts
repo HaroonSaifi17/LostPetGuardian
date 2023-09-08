@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -19,11 +20,14 @@ export class ApiService {
   }):Observable<{token:string}>{
     return this.http.post<{token:string}>(environment.ApiUrl + '/login/local',data )
   }
-  signup(form:{}):Observable<{token:string}>{
-    return this.http.post<{token:string}>(environment.ApiUrl + '/login/new',form)
+  signup(form:NgForm):Observable<{token:string}>{
+    return this.http.post<{token:string}>(environment.ApiUrl + '/login/new',form.value)
   }
   getName():Observable<{name:string}>{
     return this.http.get<{name:string}>(environment.ApiUrl + '/user/name')
+  }
+  addReport(form:NgForm):Observable<void>{
+    return this.http.post<void>(environment.ApiUrl + '/user/add',form.value)
   }
   getCurrentLocation() {
     return new Promise((resolve, reject) => {

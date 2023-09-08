@@ -12,11 +12,14 @@ export class SignupComponent {
   constructor(private api:ApiService,private router:Router){}
   msg:string=''
   signup(form:NgForm,password1:string,password2:string):void{
+    if(!password1){
+      return
+    }
    if(password1!==password2){
       this.msg="Unmatach Passward"
       return
     }
-    this.api.signup(form.value).subscribe(data=>{
+    this.api.signup(form).subscribe(data=>{
       localStorage.setItem('token',data.token)
         this.router.navigate(['/user'])
     })

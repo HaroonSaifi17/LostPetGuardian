@@ -8,9 +8,9 @@
     </button>
     <span class="mb-2 text-gray-900">Or</span>
     <form  (ngSubmit)="login(profileForm)" #profileForm="ngForm" ngNativeValidate>
-      <input name="username" ngModel type="text" class="w-full px-6 py-3 mb-2 border border-slate-600 rounded-lg font-medium"
+      <input required name="username" ngModel type="text" class="w-full px-6 py-3 mb-2 border border-slate-600 rounded-lg font-medium"
         placeholder="Email" value="" />
-      <input name="password" ngModel type="password" class="w-full px-6 py-3 mb-2 border border-slate-600 rounded-lg font-medium"
+      <input required name="password" ngModel type="password" class="w-full px-6 py-3 mb-2 border border-slate-600 rounded-lg font-medium"
         placeholder="Password" value="" />
       <p class="text-red-600 my-2" *ngIf="error">{{error}}</p>
       <button type="submit"

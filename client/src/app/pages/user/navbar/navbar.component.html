@@ -23,8 +23,8 @@
   <div (click)='profile=!profile' class="flex justify-center items-center rounded-full bg-slate-400 w-[30px] h-[30px] relative">
     <i class="fa-solid fa-user fa-lg"></i>
     <div *ngIf="profile" class="absolute top-full right-full p-2 pt-0 rounded-2xl bg-slate-300 z-[1000]">
-      <p class="p-2 ">{{(name$ | async)?.name}}</p>
-      <a (click)="logout()" class="p-2 mb-2 font-bold">logout</a>
+      <p class="p-2  whitespace-nowrap text-center">{{userName}}</p>
+      <a (click)="logout()" class="p-2 mb-2 font-bold text-center">logout</a>
     </div>
   </div>
 </nav>
