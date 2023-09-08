@@ -6,6 +6,7 @@ import { SignupComponent } from './pages/signup/signup.component'
 import { UserComponent } from './pages/user/user.component'
 import { LoginCallbackComponent } from './pages/login-callback/login-callback.component'
 import { AuthGuard } from './services/auth.guard'
+import { DasboardComponent } from './pages/user/dasboard/dasboard.component'
 
 const routes: Routes = [
   {
@@ -23,7 +24,18 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'dashboard',
+        component: DasboardComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch:'full',
+      },
+    ],
   },
   {
     path: 'callback',

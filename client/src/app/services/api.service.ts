@@ -22,4 +22,7 @@ export class ApiService {
   signup(form:{}):Observable<{token:string}>{
     return this.http.post<{token:string}>(environment.ApiUrl + '/login/new',form)
   }
+  getName():Observable<{name:string}>{
+    return this.http.get<{name:string}>(environment.ApiUrl + '/user/name')
+  }
 }

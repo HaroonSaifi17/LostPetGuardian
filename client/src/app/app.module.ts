@@ -8,8 +8,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserComponent } from './pages/user/user.component';
 import { LoginCallbackComponent } from './pages/login-callback/login-callback.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './pages/user/navbar/navbar.component';
+import { CorsInterceptor } from './services/cors.interceptor';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { DasboardComponent } from './pages/user/dasboard/dasboard.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +22,24 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     UserComponent,
-    LoginCallbackComponent
+    LoginCallbackComponent,
+    NavbarComponent,
+    DasboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    GoogleMapsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CorsInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
