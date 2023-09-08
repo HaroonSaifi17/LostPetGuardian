@@ -14,9 +14,12 @@ export class ApiService {
     this.router.navigate(['/'])
   }
   login(data:{
-    email:string,
+    username:string,
     password:string
   }):Observable<{token:string}>{
     return this.http.post<{token:string}>(environment.ApiUrl + '/login/local',data )
+  }
+  signup(form:{}):Observable<{token:string}>{
+    return this.http.post<{token:string}>(environment.ApiUrl + '/login/new',form)
   }
 }

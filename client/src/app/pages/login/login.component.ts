@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { NgForm } from '@angular/forms'
 import { Router } from '@angular/router'
 import { ApiService } from 'src/app/services/api.service'
 import { environment } from 'src/environments/environment'
@@ -26,19 +27,13 @@ export class LoginComponent implements OnInit {
   googleLogin(): void {
     window.location.href = environment.ApiUrl + '/login'
   }
-  login(email: string, password: string): void {
-    let data = {
-      email: email,
-      password: password,
-    }
+  login(data:NgForm): void {
 
-      console.log(data)
-    this.api.login(data).subscribe((d) => {
+    this.api.login(data.value).subscribe((d) => {
       localStorage.setItem('token', d.token)
       this.router.navigate(['/user'])
     },(e)=>{
-      console.log("erro",e,data)
-      this.error="Incorrect Email and Password"
+      this.error="Invalid Email and Password"
     })
   }
 }

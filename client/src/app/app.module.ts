@@ -9,6 +9,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { UserComponent } from './pages/user/user.component';
 import { LoginCallbackComponent } from './pages/login-callback/login-callback.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

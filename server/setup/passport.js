@@ -51,12 +51,11 @@ passport.use('jwt',
   })
 )
 passport.use(new LocalStrategy(
-  function(email, password, done) {
-    User.findOne({ email: email }, function (err, user) {
-      if (err) { return done(err); }
+  async function(username, password, done) {
+    console.log(username,password,"hello")
+    let user=await User.findOne({ email:username })
       if (!user) { return done(null, false); }
-      if (!user.password!==password) { return done(null, false); }
-      return done(null, user);
-    });
+      if (user.password!==password) { return done(null, false)}; 
+    return done(null,user)
   }
 ));
