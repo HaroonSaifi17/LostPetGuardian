@@ -60,7 +60,6 @@ router.post(
         isFound: false,
       })
       await lostPet.save()
-      console.log(lostPet)
       res.status(200).end()
     } catch (error) {
       res.status(401).send(error).end()
