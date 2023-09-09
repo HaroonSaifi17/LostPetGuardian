@@ -3,6 +3,8 @@ const router = require('express').Router()
 const User = require('./../models/user')
 const LostPetReport = require('../models/pet')
 const path = require('path')
+const Blockchain = require("../setup/block").Blockchain;
+const Block = require("../setup/block").Block;
 
 const multer = require('multer')
 const fs = require('fs')
@@ -41,6 +43,9 @@ router.get(
     }
   }
 )
+
+const userCoin = new Blockchain();
+
 router.post(
   '/add',
   passport.authenticate('jwt', { session: false }),
@@ -66,7 +71,17 @@ router.post(
         isFound: false,
       })
       await lostPet.save()
-      res.status(200).end()
+      
+      const newBlock = new Block(
+        lostPet, // Data should be the entire LostPetReport object
+        userCoin.getLatestBlock().hash // Previous hash
+      );
+
+      userCoin.addBlock(newBlock);
+      console.log('Blockchain:');
+      console.log(JSON.stringify(userCoin, null, 2));
+
+      res.status(200).end();
     } catch (error) {
       res.status(401).send(error).end()
     }
