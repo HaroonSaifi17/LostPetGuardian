@@ -26,7 +26,7 @@ export class ReportsComponent {
           contactName: string
           contactEmail: string
           contactPhone: number
-          location: string
+          location:{lat:number,lng:number}
           dateLost: string
           isFound: boolean
           foundDate: string
@@ -50,8 +50,8 @@ export class ReportsComponent {
       '?search=' + this.search + '&cat=' + this.cat + '&page=' + this.page
     this.reportData$ = this.api.reportData(query)
   }
-  navigate(location: string): void {
-    this.api.location=location
+  navigate(location: {lat:number,lng:number}): void {
+    this.api.location=JSON.stringify(location)
     this.router.navigate(['/user/dashboard'])
   }
 }

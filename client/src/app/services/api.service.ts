@@ -50,7 +50,7 @@ export class ApiService {
           contactName: string
           contactEmail: string
           contactPhone: number
-          location: string
+          location:{lat:number,lng:number}
           dateLost: string
           isFound: boolean
           foundDate: string
@@ -74,7 +74,7 @@ export class ApiService {
           contactName: string
           contactEmail: string
           contactPhone: number
-          location: string
+          location:{lat:number,lng:number}
           dateLost: string
           isFound: boolean
           foundDate: string
@@ -85,6 +85,34 @@ export class ApiService {
       genreOptions: [string]
     }>(environment.ApiUrl + '/user/reports' + query)
   }
+  getReports(): Observable<[{          petName: string;
+          category: string
+          color: string
+          description: string
+          contactName: string
+          contactEmail: string
+          contactPhone: number
+          location:{lat:number,lng:number}
+          dateLost: string
+          isFound: boolean
+          foundDate: string
+          image: string
+      }]> {
+    return this.http.get<[{
+          petName: string;
+          category: string
+          color: string
+          description: string
+          contactName: string
+          contactEmail: string
+          contactPhone: number
+          location:{lat:number,lng:number}
+          dateLost: string
+          isFound: boolean
+          foundDate: string
+          image: string
+      }]>(environment.ApiUrl+'/user/nearby')
+      }
   getCurrentLocation() {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {

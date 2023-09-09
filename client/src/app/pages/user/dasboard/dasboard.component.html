@@ -8,10 +8,35 @@
     (mapClick)="moveMap($event)"
     (mapMousemove)="move($event)"
   >
-    <map-marker
-      [position]="center"
-      [options]="options"
-    >
-    </map-marker>
+    <map-marker [position]="positionCenter" > </map-marker>
+    <div *ngIf="reportData$ | async as reportData">
+      <map-marker
+        (mapClick)="currentData=report"
+        *ngFor="let report of reportData"
+        [position]="report.location"
+        [options]="options"
+      >
+      </map-marker>
+    </div>
   </google-map>
+  <div *ngIf="currentData">
+    <div
+      class="p-2 my-6 m-1 bg-slate-200 max-w-[500px] mx-auto"
+    >
+      <div class="flex items-center">
+        <img
+          [src]="apiUrl + currentData.image"
+          class="w-[120px] h-[120px] object-cover"
+        />
+        <div class="pl-2">
+          <p><span class="text-gray-700 font-semibold">Pet Name: </span>{{ currentData.petName }}</p>
+          <p><span class="text-gray-700 font-semibold">Category: </span>{{ currentData.category }}</p>
+          <p><span class="text-gray-700 font-semibold">Color: </span>{{ currentData.color }}</p>
+          <p><span class="text-gray-700 font-semibold">currentData Date: </span>{{ currentData.dateLost }}</p>
+          <p><span class="text-gray-700 font-semibold">Contact: </span>{{ currentData.contactPhone }}</p>
+        </div>
+      </div>
+      <p><span class="text-gray-700 font-semibold">Description: </span>{{ currentData.description }}</p>
+    </div>
+  </div>
 </div>

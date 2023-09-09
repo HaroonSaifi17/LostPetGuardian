@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const lostPetReportSchema = new mongoose.Schema({
   petName: String,
@@ -8,13 +8,13 @@ const lostPetReportSchema = new mongoose.Schema({
   contactName: String,
   contactEmail: String,
   contactPhone: Number,
-  location: String,
+  location: { lat: Number, lng: Number },
   dateLost: String,
   isFound: Boolean,
   foundDate: String,
-  image:String
-});
+  image: String,
+})
 
-const LostPetReport = mongoose.model('LostPetReport', lostPetReportSchema);
+const LostPetReport = mongoose.model('LostPetReport', lostPetReportSchema)
 
-module.exports = LostPetReport;
+module.exports = LostPetReport
