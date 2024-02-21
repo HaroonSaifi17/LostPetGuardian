@@ -1,6 +1,15 @@
 # LostPetGuardian
 
-The Website will be accessible at [https://pet.haroonsaifi.site](https://pet.haroonsaifi.site).
+[![Node.js](https://img.shields.io/badge/Node.js-16.x-green.svg)](https://nodejs.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Angular Version](https://img.shields.io/badge/Angular-v14-red)](https://angular.io/)
+[![Built with Tailwind CSS](https://img.shields.io/badge/Built_with-Tailwind_CSS-blueviolet?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Built with TypeScript](https://img.shields.io/badge/Built_with-TypeScript-blue?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
+![Screenshot](screenshots/homepage.jpg)
+
+LostPetGuardian is a user-friendly application built with Angular, Express, Tailwind CSS, and Google Maps integration. Users can easily report lost pets, and anyone can track these reports to help reunite lost pets with their owners.
+
 
 ## Installation
 
@@ -33,11 +42,12 @@ The server will be accessible at [http://localhost:4020](http://localhost:4020).
 ### Blockchain Integration
 
 In this project, we have implemented blockchain technology to enhance the security and immutability of lost pet reports. When a user submits a lost pet report, the system creates a unique transaction and appends it to the blockchain.
-The blockchain enhances security by using cryptographic techniques to link each block to the previous one. This linkage, based on hashes, ensures that tampering with one block would require changing all subsequent blocks, making it extremely secure against data manipulation.
 
-### Data Immutability
+### Contribution:
 
-Once data is added to the blockchain, it becomes immutable. This means that once a lost pet report is added, it cannot be altered or deleted. It provides a permanent and transparent record of all lost pet reports.
+Contributions are welcome! Feel free to submit pull requests or open issues for any suggestions, bug fixes, or improvements.
 
-By leveraging blockchain technology, we ensure the integrity, security, and transparency of our lost pet report system. Each report becomes part of an immutable transaction chain, enhancing trust and data reliability.
+### License:
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
